@@ -1,0 +1,203 @@
+{
+  "asset": {
+    "copyright": "Model by Fabio Pellacini from github.com/~xelatihy/yocto-gl",
+    "version": "4.2"
+  },
+  "cameras": [
+    {
+	"name": "camera1",
+      "aspect": 0.800000011920929,
+      "focus": 10.0,
+      "frame": [
+        0.9999740123748779,
+        -0.0,
+        0.00727113988250494,
+        0.00028589199064299464,
+        0.999226987361908,
+        -0.03931770101189613,
+        -0.007265519816428423,
+        0.03931869938969612,
+        0.9991999864578247,
+        -0.002960039069876075,
+        0.1983031928539276,
+        0.8281505107879639
+      ],
+      "lens": 0.06495420634746552
+    }
+  ],
+  "environments": [
+    {
+      "name": "sky",
+      "emission": [1, 1, 1],
+      "emission_tex": 2
+    }
+  ],
+  "textures": [
+    {
+      "name": "floor",
+      "uri": "textures/marble.png"
+    },
+    {
+      "name": "uvgrid",
+      "uri": "textures/uvgrid.png"
+    },
+    {
+      "name": "sky",
+      "uri": "textures/sky.hdr"
+    }
+  ],
+  "materials": [
+    {
+      "name": "floor",
+      "color": [0, 0, 0],
+      "color_tex": 0,
+      "type": "matte"
+    },
+    {
+      "name": "arealight1",
+      "emission": [20, 20, 20],
+      "type": "matte"
+    },
+    {
+      "name": "arealight2",
+      "emission": [20, 20, 20],
+      "type": "matte"
+    },
+    {
+      "name": "bunny1",
+      "color": [0.25, 0.5, 0.25],
+      "roughness": 0.1,
+      "type": "matte"
+    },
+    {
+      "name": "sphere1",
+      "type": "refractive",
+      "color": [0.9, 0.9, 0.9],
+      "roughness": 0
+    },
+    {
+      "name": "bunny2",
+      "color": [1, 1, 1],
+      "color_tex": 1,
+      "type": "matte"
+    },
+    {
+      "name": "sphere2",
+      "type": "transparent",
+      "color": [0.75, 0.25, 0.25],
+      "roughness": 0
+    },
+    {
+      "name": "bunny3",
+      "color": [0.25, 0.25, 0.5],
+      "roughness": 0.1,
+      "type": "matte"
+    },
+	 {
+       "name": "material5",
+      "color": [
+        0.5785959959030151,
+        0.5785959959030151,
+        0.5785959959030151
+      ],
+      "roughness": 0.03162277862429619,
+      "type": "glossy"
+    },
+	{
+      "name": "material6",
+      "emission": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "type": "matte"
+    },
+    {
+      "name": "material7",
+      "emission": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "type": "matte"
+    },
+    {
+      "name": "material8",
+      "emission": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "type": "matte"
+    }
+  ],
+  "shapes": [
+    {
+      "name": "floor",
+      "uri": "shapes/floor.ply"
+    },
+    {
+      "name": "arealight1",
+      "uri": "shapes/arealight1.ply"
+    },
+    {
+      "name": "arealight2",
+      "uri": "shapes/arealight2.ply"
+    },
+    {
+      "name": "bunny",
+      "uri": "shapes/vodka.ply"
+    },
+    {
+      "name": "sphere",
+      "uri": "shapes/sphere.ply"
+    },
+	{
+	"name": "pav",
+	"uri": "shapes/shape20.ply"
+	},
+	{
+	"name": "1",
+	"uri": "shapes/shape21.ply"
+	},
+	{
+	"name": "2",
+	"uri": "shapes/shape22.ply"
+	},
+	{
+	"name": "3",
+	"uri": "shapes/shape23.ply"
+	}
+  ],
+  "instances": [
+    
+    
+    {
+      "name": "bunny2",
+      "shape": 3,
+      "frame": [1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0, 0],
+      "material": 4
+    },
+	{
+      "name": "instance20",
+      "material": 8,
+      "shape": 5
+    },
+	{
+      "name": "instance21",
+      "material": 9,
+      "shape": 6
+    },
+	{
+      "name": "instance22",
+      "material": 10,
+      "shape": 7
+    },
+	{
+      "name": "instance23",
+      "material": 11,
+      "shape": 8
+    }
+	
+  ]
+}
