@@ -1,0 +1,91 @@
+{
+  "asset": {
+    "copyright": "Model by Brice Laville from RenderMan \"Rolling Teapot\" Art Challenge",
+    "version": "4.1"
+  },
+  "cameras": {
+    "default": {
+      "lens": 0.05,
+      "aperture": 0.0,
+      "aspect": 2.4,
+      "lookat": [-0.75, 0.4, 0.9, -0.075, 0.05, -0.05, 0, 1, 0]
+    }
+  },
+  "environments": {
+    "sky": {
+      "emission": [0.5, 0.5, 0.5],
+      "emission_tex": "sky"
+    }
+  },
+  "instances": {
+    "floor": {
+      "shape": "floor",
+      "material": "floor"
+    },
+    "rollingteapot-shape": {
+      "frame": [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+      "shape": "rollingteapot-shape",
+      "material": "rollingteapot-shape"
+    },
+    "rollingteapot-subdiv": {
+      "frame": [1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0],
+      "shape": "rollingteapot-subdiv",
+      "material": "rollingteapot-subdiv"
+    },
+    "arealight1": {
+      "lookat": [-0.4, 0.8, 0.8, 0, 0.1, 0, 0, 1, 0],
+      "shape": "arealight1",
+      "material": "arealight1"
+    },
+    "arealight2": {
+      "lookat": [0.4, 0.8, 0.8, 0, 0.1, 0, 0, 1, 0],
+      "shape": "arealight2",
+      "material": "arealight2"
+    }
+  },
+  "materials": {
+    "floor": {
+      "color": [0.7, 0.7, 0.7],
+      "color_tex": "floor",
+      "specular": 0,
+      "type": "matte"
+    },
+    "rollingteapot-shape": {
+      "color": [0.5, 0.5, 0.5],
+      "roughness": 0.003,
+      "type": "glossy"
+    },
+    "rollingteapot-subdiv": {
+      "color": [0.5, 0.5, 0.5],
+      "roughness": 0.003,
+      "type": "glossy"
+    },
+    "arealight1": {
+      "emission": [20, 20, 20],
+      "type": "matte"
+    },
+    "arealight2": {
+      "emission": [20, 20, 20],
+      "type": "matte"
+    }
+  },
+  "subdivs": {
+    "rollingteapot-subdiv": {
+      "shape": "rollingteapot-subdiv",
+      "datafile": "rollingteapot-subdiv.obj",
+      "subdivisions": 1,
+      "smooth": true
+    }
+  },
+  "shapes": {
+    "floor": "floor.ply",
+    "rollingteapot-shape": "rollingteapot-shape.obj",
+    "rollingteapot-subdiv": "rollingteapot-subdiv.obj",
+    "arealight1": "arealight1.ply",
+    "arealight2": "arealight2.ply"
+  },
+  "textures": {
+    "floor": "floor.png",
+    "sky": "sky.hdr"
+  }
+}
