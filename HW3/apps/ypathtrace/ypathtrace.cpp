@@ -44,7 +44,7 @@ void run_offline(const string& filename, const string& output,
 
   // scene loading
   print_progress_begin("load scene");
-  auto scene = load_scene(filename);
+  auto scene = load_scene(filename).second;
   print_progress_end();
 
   // camera
@@ -91,7 +91,7 @@ void run_interactive(const string& filename, const string& output,
 
   // load scene
   print_progress_begin("load scene");
-  auto scene = load_scene(filename);
+  auto scene = load_scene(filename).second;
   print_progress_end();
 
   // camera
