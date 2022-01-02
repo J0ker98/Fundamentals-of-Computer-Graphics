@@ -42,9 +42,10 @@ void run_offline(const string& filename, const string& output,
   // copy params
   auto params = params_;
 
-  // scene loading
   print_progress_begin("load scene");
-  auto scene = load_scene(filename).second;
+  auto error = string{};
+  auto scene = scene_data{};
+  if (!load_scene(filename, scene, error)) print_fatal(error);
   print_progress_end();
 
   // camera
@@ -79,7 +80,7 @@ void run_offline(const string& filename, const string& output,
 
   // save image
   print_progress_begin("save image");
-  save_image(output, get_render(state));
+  if (!save_image(output, get_render(state), error)) print_fatal(error);
   print_progress_end();
 }
 
@@ -89,9 +90,10 @@ void run_interactive(const string& filename, const string& output,
   // copy params
   auto params = params_;
 
-  // load scene
   print_progress_begin("load scene");
-  auto scene = load_scene(filename).second;
+  auto error = string{};
+  auto scene = scene_data{};
+  if (!load_scene(filename, scene, error)) print_fatal(error);
   print_progress_end();
 
   // camera

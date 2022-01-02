@@ -2,10 +2,11 @@
   "asset": {
     "copyright": "Model by 3DScanStore from www.3dscanstore.com",
     "generator": "Yocto/GL - https://github.com/xelatihy/yocto-gl",
-    "version": "4.1"
+    "version": "4.2"
   },
-  "cameras": {
-    "camera1": {
+  "cameras": [
+    {
+      "name": "camera1",
       "aspect": 1.0,
       "focus": 1.059059977531433,
       "frame": [
@@ -16,43 +17,56 @@
       ],
       "lens": 0.10000000149011612
     }
-  },
-  "environments": {
-    "environment1": {
+  ],
+  "environments": [
+    {
+      "name": "environment1",
       "emission": [1.0, 1.0, 1.0],
-      "emission_tex": "texture2"
+      "emission_tex": 1
     },
-    "environment2": {
+    {
+      "name": "environment2",
       "emission": [4.0, 4.0, 4.0],
-      "emission_tex": "texture2",
+      "emission_tex": 1,
       "frame": [
         -0.707099974155426, 0.0, -0.707099974155426, 0.0, 1.0, 0.0,
         0.707099974155426, 0.0, -0.707099974155426, 0.0, 0.0, 0.0
       ]
     }
-  },
-  "materials": {
-    "material1": {
+  ],
+  "textures": [
+    {
+      "name": "texture1",
+      "uri": "textures/texture1.png"
+    },
+    {
+      "name": "texture2",
+      "uri": "textures/texture2.hdr"
+    }
+  ],
+  "materials": [
+    {
+      "name": "material1",
       "color": [0.7110000252723694, 0.7110000252723694, 0.7110000252723694],
       "roughness": 0.5,
       "scanisotropy": -0.800000011920929,
       "scattering": [1.0, 1.0, 1.0],
-      "scattering_tex": "texture1",
+      "scattering_tex": 0,
       "trdepth": 0.0010000000474974513,
       "type": "refractive"
     }
-  },
-  "instances": {
-    "object1": {
-      "material": "material1",
-      "shape": "shape1"
+  ],
+  "shapes": [
+    {
+      "name": "shape1",
+      "uri": "shapes/shape1.ply"
     }
-  },
-  "shapes": {
-    "shape1": "shape1.ply"
-  },
-  "textures": {
-    "texture1": "texture1.png",
-    "texture2": "texture2.hdr"
-  }
+  ],
+  "instances": [
+    {
+      "name": "object1",
+      "material": 0,
+      "shape": 0
+    }
+  ]
 }

@@ -349,22 +349,19 @@ static vec4f shade_volpathtrace(const scene_data& scene, const bvh_data& bvh,
     const pathtrace_params& params) {
   // YOUR CODE GOES HERE ---------------
   // initialize
-  auto radiance      = vec3f{0, 0, 0};
-  auto weight        = vec3f{1, 1, 1};
-  auto ray           = ray_;
-  auto volume_stack  = vector<material_point>{};
-  auto max_roughness = 0.0f;
-  auto hit           = false;
-  auto hit_albedo    = vec3f{0, 0, 0};
-  auto hit_normal    = vec3f{0, 0, 0};
-  auto opbounce      = 0;
+  auto radiance     = vec3f{0, 0, 0};
+  auto weight       = vec3f{1, 1, 1};
+  auto ray          = ray_;
+  auto volume_stack = vector<material_point>{};
+  auto hit          = false;
+  auto opbounce     = 0;
 
   // trace  path
   for (auto bounce = 0; bounce < params.bounces; bounce++) {
     // intersect next point
     auto intersection = intersect_bvh(bvh, scene, ray);
     if (!intersection.hit) {
-      if (bounce > 0) radiance += weight * eval_environment(scene, ray.d);
+      radiance += weight * eval_environment(scene, ray.d);
       break;
     }
 
@@ -389,10 +386,6 @@ static vec4f shade_volpathtrace(const scene_data& scene, const bvh_data& bvh,
       auto normal   = eval_shading_normal(scene, intersection, outgoing);
       auto material = eval_material(scene, intersection);
 
-      // correct roughness
-      //  max_roughness      = max(material.roughness, max_roughness);
-      //  material.roughness = max_roughness;
-
       // handle opacity
       if (material.opacity < 1 && rand1f(rng) >= material.opacity) {
         if (opbounce++ > 128) break;
@@ -403,9 +396,7 @@ static vec4f shade_volpathtrace(const scene_data& scene, const bvh_data& bvh,
 
       // set hit variables
       if (bounce == 0) {
-        hit        = true;
-        hit_albedo = material.color;
-        hit_normal = normal;
+        hit = true;
       }
 
       // accumulate emission
@@ -414,6 +405,7 @@ static vec4f shade_volpathtrace(const scene_data& scene, const bvh_data& bvh,
       // next direction
       auto incoming = vec3f{0, 0, 0};
       if (!is_delta(material)) {
+        // direct with MIS --- light
         if (rand1f(rng) < 0.5f) {
           incoming = sample_bsdfcos(
               material, normal, outgoing, rand1f(rng), rand2f(rng));
@@ -451,9 +443,6 @@ static vec4f shade_volpathtrace(const scene_data& scene, const bvh_data& bvh,
       auto  outgoing = -ray.d;
       auto  position = ray.o + ray.d * intersection.distance;
       auto& vsdf     = volume_stack.back();
-
-      // accumulate emission
-      // radiance += weight * eval_volemission(emission, outgoing);
 
       // next direction
       auto incoming = vec3f{0, 0, 0};
@@ -917,8 +906,6 @@ static void tesselate_catmullclark(
 
   auto nv = (int)vert.size();
   auto ne = (int)edges.size();
-  auto nb = (int)boundary.size();
-  auto nf = (int)quads.size();
 
   //
   // STEP 1 - LINEAR SUBDIVISION
