@@ -280,10 +280,29 @@ vec3f eval_position(const scene_data& scene, const instance_data& instance,
     int element, const vec2f& uv) {
   auto& shape = scene.shapes[instance.shape];
   if (!shape.triangles.empty()) {
-    auto t = shape.triangles[element];
+    // EXTRA CREDIT - SHADOW TERMINATOR
+
+    auto triangles = shape.triangles[element];
+
+    auto p0 = shape.positions[triangles.x];
+    auto p1 = shape.positions[triangles.y];
+    auto p2 = shape.positions[triangles.z];
+
+    auto p = p0 * (1 - uv.x - uv.y) + p1 * uv.x + p2 * uv.y;
+
+    auto u = p - p1;
+    auto v = p - p2;
+    auto w = p - p0;
+
+    u -= min(.0f, dot(u, shape.normals[triangles.y])) *
+         shape.normals[triangles.y];
+    v -= min(.0f, dot(v, shape.normals[triangles.z])) *
+         shape.normals[triangles.z];
+    w -= min(.0f, dot(w, shape.normals[triangles.x])) *
+         shape.normals[triangles.x];
+
     return transform_point(
-        instance.frame, interpolate_triangle(shape.positions[t.x],
-                            shape.positions[t.y], shape.positions[t.z], uv));
+        instance.frame, p + (1 - uv.x - uv.y) * w + uv.x * u + uv.y * v);
   } else if (!shape.quads.empty()) {
     auto q = shape.quads[element];
     return transform_point(instance.frame,
